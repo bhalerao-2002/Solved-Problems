@@ -1,0 +1,27 @@
+Link : https://leetcode.com/problems/maximum-number-of-coins-you-can-get/description/?envType=daily-question&envId=2023-11-24
+
+Brute Force approach
+
+T.C. : O(mlogm + n) m is size of given array
+S.C. : O(1)
+
+class Solution {
+public:
+    int maxCoins(vector<int>& piles) {
+        ios::sync_with_stdio(false);
+        cin.tie(0);
+        cout.tie(0);
+        //Sort the given array so we get maximum element accessible.
+        sort(piles.begin(), piles.end());
+        int j = piles.size()-1 , n = piles.size()/3 , ans =0;
+        //if will run loop for only n times depending on size of array as we have to choose 3at a time.
+        for(int i = n; i>0; i--){
+            //Taking from last, last elment will be greatest
+            //we will add our ans(our choice coin pile) as j-1, because j will of alice, now legally we should give chance to Bob to pick but by greedy approach we will try to give him 
+            //small and pick greater for our, so we will totally neglect Bob choice and give largest to alice ans second larget to own at every loop.
+            ans += piles[j-1];
+            j = j-2;
+        }
+        return ans;
+    }
+};
