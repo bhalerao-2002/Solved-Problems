@@ -1,0 +1,13 @@
+
+1. How to find i th bit of a given number ?
+Sol:      
+          if((( nums >> i ) & 1) == 1){
+              bit was 1.
+          } else {
+              bit was 0.
+          }
+
+2. How to unset the right most set bit of an integer ?
+Sol: 
+
+        n = n&(n-1)
