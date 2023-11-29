@@ -1,0 +1,83 @@
+Link: 
+
+Approach 1:
+
+TC: O(32) ~ O(1) Constant.
+SC: O(1) No extra space used.
+
+we are using logic : 
+1. How to find i'th bit of a given number?
+Sol:      
+          if((( nums >> i ) & 1) == 1){
+              bit was 1.
+          } else {
+              bit was 0.
+          }
+
+CODE : 
+
+int count = 0;
+for(int i = 31; i>=0; i++){
+  //If the current bit is 1 then we increase the count.
+  if((nums[i]>>i)&1 == 1){
+    count++;
+  }
+}
+return count;
+
+Approach 2: 
+
+TC: O(k)  Where k is a number of 1's in a given number  ~ Constant.
+SC: O(1) No extra space used.
+
+Logic: 
+2. How to unset the rightmost set bit of an integer?
+Sol: 
+        n = n&(n-1)
+
+Code:
+
+int cnt = 0;
+while(n>0){
+  //Every time we will compare whether the given number is equal to 0 or not in the above check. if not
+  //we will set the right most bit(least significant bit) to 0 by the above step and count how many times we will do it
+  n = n&(n-1);
+  cnt++;
+}
+return cnt;
+
+Approach 3: 
+
+Logic: //The approach we learnt in the college (Division Method to derive the binary number)
+
+TC: O(logN {base 2})  //Every time the number is getting directly half that's why log base 2.
+SC: O(1)
+
+Code: 
+
+int cnt = 0;
+while(n != 0){
+  cnt += (n%2);
+  //this will add a reminder to count if rem = 1, bit was one so 1 will be added otherwise 0 will be added.
+  n = n/2;
+  //Every time it will divide the number by 2.
+}
+return cnt;
+
+Approach 4: GCC Built-in Function
+Link for more information on built-in functions: https://www.geeksforgeeks.org/builtin-functions-gcc-compiler/ 
+
+Time complexity : O(log2(n))
+Auxiliary Space: O(1)
+
+Code: 
+   cnt =  __builtin_popcount(number);
+    
+//This function is used to count the number of one’s(set bits) in an integer. 
+  // Example: 
+  // if number = 4
+  // binary value of 4 is 100
+  // Output: No of ones is 1.
+
+
+
